@@ -1,0 +1,9 @@
+default:
+  SQLALCHEMY_DATABASE_URI: "someURL"
+
+development:
+  # Set to SQLite for local testing purposes
+  SQLALCHEMY_DATABASE_URI: "sqlite:///test_python_database_can_be_deleted.db"
+
+production:
+  SQLALCHEMY_DATABASE_URI: "business_database:123456"

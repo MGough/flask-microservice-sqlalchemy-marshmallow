@@ -1,0 +1,7 @@
+flask
+Flask-SQLAlchemy
+flask-marshmallow
+marshmallow-sqlalchemy
+marshmallow
+dynaconf[yaml]
+gunicorn
