@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 
 from business.models.location import Location, database, LocationSchema
 
-blueprint = Blueprint('location', __name__, url_prefix='/location')
+blueprint = Blueprint("location", __name__, url_prefix="/location")
 location_schema = LocationSchema()
 
 
