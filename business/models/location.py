@@ -7,7 +7,8 @@ class Location(database.Model):
     name = database.Column(database.String, nullable=False)
 
 
-class LocationSchema(marshmallow.ModelSchema):
+class LocationSchema(marshmallow.SQLAlchemyAutoSchema):
     class Meta:
         model = Location
+        load_instance = True
         sqla_session = database.session
