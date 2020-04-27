@@ -1,8 +1,13 @@
 name: Publish Docker image
 on:
   push:
+    # Publish `master` as Docker `latest` image.
     branches:
-      - feature/docker-build
+      - master
+
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
 
 env:
   IMAGE_NAME: demo-microservice
