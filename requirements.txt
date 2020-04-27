@@ -1,7 +1,7 @@
-flask
-Flask-SQLAlchemy
-flask-marshmallow
-marshmallow-sqlalchemy
-marshmallow
-dynaconf[yaml]
-gunicorn
+flask==1.1.2
+Flask-SQLAlchemy==2.4.1
+flask-marshmallow==0.12.0
+marshmallow-sqlalchemy==0.23.0
+marshmallow==3.5.1
+dynaconf[yaml]==2.2.3
+gunicorn==20.0.4
