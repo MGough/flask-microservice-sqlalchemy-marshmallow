@@ -7,6 +7,7 @@ development:
 
 unittests:
   TESTING: True
+  SQLALCHEMY_DATABASE_URI: "sqlite:///test_python_database_can_be_deleted.db"
 
 integration:
   SQLALCHEMY_DATABASE_URI: "sqlite:////home/serviceuser/temp.db"
