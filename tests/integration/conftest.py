@@ -33,7 +33,7 @@ def application_container(docker_client, application_image):
     container.reload()
 
     assigned_port = container.ports[f"{APPLICATION_PORT}/tcp"][0]["HostPort"]
-    wait_for_application(assigned_port)
+    _wait_for_application(assigned_port)
 
     yield container, assigned_port
     print(container.logs())
@@ -43,13 +43,19 @@ def application_container(docker_client, application_image):
         print(f"Error when killing container: {ex}")
 
 
-def wait_for_application(port):
+def _wait_for_application(port):
+    """
+    This waits for the HTTP server within the container to start responding
+    to ensure that we're not running integration tests too soon
+    It hits the /health endpoint until a response is received or until a
+    period of time has elapsed.
+    :param port: The of the service on the host machine
+    """
     for i in range(10):
         try:
-            response = requests.get(f"http://localhost:{port}/health")
-            if response.status_code == 200:
-                print("Connected to newly created container")
-                break
+            requests.get(f"http://localhost:{port}/health")
+            print("Connected to newly created container")
+            break
         except requests.RequestException as ex:
             print(f"error connecting to newly created container: {ex}")
             time.sleep(i / 100)
