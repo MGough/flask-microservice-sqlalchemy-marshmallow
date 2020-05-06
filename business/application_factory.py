@@ -3,6 +3,8 @@ from dynaconf import FlaskDynaconf
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 
+from business.services import health_service
+
 database = SQLAlchemy()
 marshmallow = Marshmallow()
 
@@ -20,6 +22,7 @@ def create_app():
         from business.services import location_service
 
         database.create_all()
+        app.register_blueprint(health_service.blueprint)
         app.register_blueprint(location_service.blueprint)
 
     return app

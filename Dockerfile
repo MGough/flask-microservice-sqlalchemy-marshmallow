@@ -13,4 +13,4 @@ USER serviceuser
 COPY business business
 COPY config config
 
-CMD gunicorn "business.application_factory:create_app()"
+CMD gunicorn --worker-tmp-dir /dev/shm -b 0.0.0.0:8000 "business.application_factory:create_app()"
