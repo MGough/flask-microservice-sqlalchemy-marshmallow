@@ -8,6 +8,8 @@ on:
     # Publish `v1.2.3` tags as releases.
     tags:
       - v*
+  schedule:
+    - cron: "0 01 * * *"
 
 env:
   IMAGE_NAME: demo-microservice
@@ -15,13 +17,18 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' || github.event_name == 'schedule'
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Build image
+        if: github.event_name == 'push'
         run: docker build . --file Dockerfile --tag image
+
+      - name: Build image without cache
+        if: github.event_name == 'schedule'
+        run: docker build --pull --no-cache .
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
