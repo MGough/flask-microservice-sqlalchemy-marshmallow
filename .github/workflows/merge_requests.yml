@@ -20,8 +20,13 @@ jobs:
       with:
         python-version: '3.8'
 
-    - name: Integration tests
+    - name: Install test dependencies
       run: |
         python -m pip install --upgrade pip setuptools
         pip install tox
-        python -m tox
+
+    - name: Unit tests
+      run: python -m tox -e integration
+
+    - name: Integration tests
+      run: python -m tox

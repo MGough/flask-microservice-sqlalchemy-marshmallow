@@ -36,6 +36,12 @@ For running the application locally (i.e. not in a docker container) you'll need
 community edition, which I why I've included it.
 
 ## Running tests
+
+### Unit tests
 Assuming your development environment is set up, it's as simple as running `tox`.
+
+### Integration tests
 To run the integration tests you'll need docker installed & running, as well as
 a working internet connection (to pull docker images).
+
+You'll then need to run `tox -e integration`
