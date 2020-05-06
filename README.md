@@ -34,3 +34,8 @@ For running the application locally (i.e. not in a docker container) you'll need
 `flask run` with the appropriate arguments could also be used, but the
 `development_wsgi` file makes it simple to start the debugger in PyCharm
 community edition, which I why I've included it.
+
+## Running tests
+Assuming your development environment is set up, it's as simple as running `tox`.
+To run the integration tests you'll need docker installed & running, as well as
+a working internet connection (to pull docker images).
